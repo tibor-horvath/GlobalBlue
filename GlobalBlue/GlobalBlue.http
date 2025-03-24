@@ -3,14 +3,11 @@
 ###
 
 @country=AT
-POST {{GlobalBlue_HostAddress}}/Purchase/calculate/{{country}}
+POST {{GlobalBlue_HostAddress}}/api/v1/purchase/calculate/{{country}}
 Content-Type: application/json
 
 {  
-  "net": null,
-  "gross": 240,
-  "vat": null,
-  "vatRatePercentage": 20
+
 }
 
 ###

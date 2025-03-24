@@ -15,8 +15,10 @@ public class Program
         builder.Services.AddOpenApi();
 
         builder.Services.RegisterServices();
+        builder.Services.AddApiVersioning();
 
         var app = builder.Build();
+
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

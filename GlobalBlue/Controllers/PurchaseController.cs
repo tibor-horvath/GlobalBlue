@@ -9,7 +9,8 @@ using System.ComponentModel.DataAnnotations;
 namespace GlobalBlue.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion("1")]
 public class PurchaseController : ControllerBase
 {
     private readonly ICalculationService _calculationService;
@@ -30,7 +31,8 @@ public class PurchaseController : ControllerBase
     /// <param name="request">The amount calculation request containing necessary data.</param>
     /// <returns>An IActionResult containing the calculation response or a bad request if the input is invalid.</returns>
     [HttpPost("calculate/{country:required}")]
-    [ProducesResponseType(200)]
+    [MapToApiVersion("1")]
+    [ProducesResponseType(typeof(AmountCalculationResponse), 200)]
     [ProducesResponseType(400)]
     public IActionResult CalculateAmounts(
         [FromRoute] Country country,
@@ -40,7 +42,12 @@ public class PurchaseController : ControllerBase
 
         if (validationResult != ValidationResult.Success)
         {
-            return BadRequest(validationResult?.ErrorMessage);
+            return BadRequest(new ProblemDetails
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Title = "Validation Error",
+                Detail = validationResult?.ErrorMessage
+            });
         }
 
         var calculationResult = _calculationService.CalculateAmounts(request);
