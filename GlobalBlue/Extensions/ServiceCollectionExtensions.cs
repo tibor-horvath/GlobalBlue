@@ -1,17 +1,26 @@
-﻿using GlobalBlue.Services;
+﻿using GlobalBlue.Extensions;
+using GlobalBlue.Services;
 using GlobalBlue.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GlobalBlue;
+namespace GlobalBlue.Extensions;
 
-public static class ServiceRegistration
+public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Registers application services with the dependency injection container.
+    /// </summary>
+    /// <param name="services">The IServiceCollection to add the services to.</param>
     public static void RegisterServices(this IServiceCollection services)
     {
         services.AddScoped<ICalculationService, CalculationService>();
         services.AddScoped<ICountryVatRateValidator, CountryVatRateValidator>();
     }
 
+    /// <summary>
+    /// Adds API versioning to the service collection.
+    /// </summary>
+    /// <param name="services">The IServiceCollection to add the API versioning to.</param>
     public static void AddApiVersioning(this IServiceCollection services)
     {
         services.AddApiVersioning(options =>

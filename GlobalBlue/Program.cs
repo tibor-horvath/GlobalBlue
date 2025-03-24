@@ -1,3 +1,4 @@
+using GlobalBlue.Extensions;
 using Scalar.AspNetCore;
 
 namespace GlobalBlue;
