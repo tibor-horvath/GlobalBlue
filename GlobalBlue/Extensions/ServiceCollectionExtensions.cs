@@ -1,5 +1,7 @@
 ﻿using GlobalBlue.Services;
 using GlobalBlue.Services.Interfaces;
+using GlobalBlue.Validation;
+using GlobalBlue.Validation.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GlobalBlue.Extensions;
@@ -13,7 +15,7 @@ public static class ServiceCollectionExtensions
     public static void RegisterServices(this IServiceCollection services)
     {
         services.AddScoped<ICalculationService, CalculationService>();
-        services.AddScoped<IValidator, CountryVatRateValidator>();
+        services.AddScoped<ICountryVatRateValidator, CountryVatRateValidator>();
     }
 
     /// <summary>

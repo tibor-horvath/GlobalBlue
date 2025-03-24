@@ -2,6 +2,7 @@
 using GlobalBlue.Dtos;
 using GlobalBlue.Enums;
 using GlobalBlue.Services.Interfaces;
+using GlobalBlue.Validation.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
@@ -11,13 +12,13 @@ namespace GlobalBlue.Tests.Controllers;
 public class PurchaseControllerTests
 {
     private readonly Mock<ICalculationService> _mockCalculationService;
-    private readonly Mock<IValidator> _mockCountryVatRateValidator;
+    private readonly Mock<ICountryVatRateValidator> _mockCountryVatRateValidator;
     private readonly PurchaseController _controller;
 
     public PurchaseControllerTests()
     {
         _mockCalculationService = new Mock<ICalculationService>();
-        _mockCountryVatRateValidator = new Mock<IValidator>();
+        _mockCountryVatRateValidator = new Mock<ICountryVatRateValidator>();
         _controller = new PurchaseController(_mockCalculationService.Object, _mockCountryVatRateValidator.Object, new NullLogger<PurchaseController>());
     }
 

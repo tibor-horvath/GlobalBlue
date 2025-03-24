@@ -1,7 +1,7 @@
 ﻿using GlobalBlue.Dtos;
 using System.ComponentModel.DataAnnotations;
 
-namespace GlobalBlue.Attributes;
+namespace GlobalBlue.Validation.Attributes;
 
 /// <summary>
 /// Attribute to validate the AmountCalculationRequest object.
@@ -26,7 +26,7 @@ public sealed class ValidAmountCalculationRequestAttribute : ValidationAttribute
             return new ValidationResult("Exactly one of Net, Gross, or VAT amount must be provided.");
         }
 
-        if ((hasNet && request.Net <= 0) || (hasGross && request.Gross <= 0) || (hasVat && request.Vat <= 0))
+        if (hasNet && request.Net <= 0 || hasGross && request.Gross <= 0 || hasVat && request.Vat <= 0)
         {
             return new ValidationResult("Amounts must be greater than zero.");
         }

@@ -1,9 +1,9 @@
 ﻿using GlobalBlue.Enums;
-using GlobalBlue.Services;
+using GlobalBlue.Validation;
 using Microsoft.Extensions.Logging.Abstractions;
 using System.ComponentModel.DataAnnotations;
 
-namespace GlobalBlue.Tests.Services;
+namespace GlobalBlue.Tests.Validation;
 public class CountryVatRateValidatorTest
 {
     private readonly CountryVatRateValidator _validator;

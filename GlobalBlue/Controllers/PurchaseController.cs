@@ -1,8 +1,9 @@
-using GlobalBlue.Attributes;
 using GlobalBlue.Dtos;
 using GlobalBlue.Enums;
 using GlobalBlue.Extensions;
 using GlobalBlue.Services.Interfaces;
+using GlobalBlue.Validation.Attributes;
+using GlobalBlue.Validation.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,12 +15,12 @@ namespace GlobalBlue.Controllers;
 public class PurchaseController : ControllerBase
 {
     private readonly ICalculationService _calculationService;
-    private readonly IValidator _countryVatRateValidator;
+    private readonly ICountryVatRateValidator _countryVatRateValidator;
     private readonly ILogger<PurchaseController> _logger;
 
     public PurchaseController(
         ICalculationService calculationService,
-        IValidator countryVatRateValidator,
+        ICountryVatRateValidator countryVatRateValidator,
         ILogger<PurchaseController> logger)
     {
         _calculationService = calculationService;

@@ -1,11 +1,11 @@
 ﻿using GlobalBlue.Config;
 using GlobalBlue.Enums;
-using GlobalBlue.Services.Interfaces;
+using GlobalBlue.Validation.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
-namespace GlobalBlue.Services;
+namespace GlobalBlue.Validation;
 
-public class CountryVatRateValidator : IValidator
+public class CountryVatRateValidator : ICountryVatRateValidator
 {
     private readonly ILogger<CountryVatRateValidator> _logger;
 

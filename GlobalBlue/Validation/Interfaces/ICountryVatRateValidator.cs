@@ -1,9 +1,9 @@
 ﻿using GlobalBlue.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace GlobalBlue.Services.Interfaces;
+namespace GlobalBlue.Validation.Interfaces;
 
-public interface IValidator
+public interface ICountryVatRateValidator
 {
     ValidationResult? Validate(Country country, decimal vatRate);
 }

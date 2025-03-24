@@ -1,8 +1,8 @@
-﻿using GlobalBlue.Attributes;
-using GlobalBlue.Dtos;
+﻿using GlobalBlue.Dtos;
+using GlobalBlue.Validation.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace GlobalBlue.Tests.Attributes;
+namespace GlobalBlue.Tests.Validation;
 public class ValidAmountCalculationRequestAttributeTests
 {
     private readonly ValidAmountCalculationRequestAttribute _attribute = new();
