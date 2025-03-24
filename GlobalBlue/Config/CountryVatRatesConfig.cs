@@ -1,6 +1,6 @@
 using GlobalBlue.Enums;
 
-namespace GlobalBlue.Configuration;
+namespace GlobalBlue.Config;
 
 /// <summary>
 /// Configuration class for VAT rates per country.

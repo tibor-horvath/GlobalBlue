@@ -1,4 +1,4 @@
-﻿using GlobalBlue.Configuration;
+﻿using GlobalBlue.Config;
 using GlobalBlue.Enums;
 using GlobalBlue.Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
