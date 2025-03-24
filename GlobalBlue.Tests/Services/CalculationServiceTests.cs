@@ -1,5 +1,6 @@
 ﻿using GlobalBlue.Dtos;
 using GlobalBlue.Services;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace GlobalBlue.Tests.Services;
 public class CalculationServiceTests
@@ -8,7 +9,7 @@ public class CalculationServiceTests
 
     public CalculationServiceTests()
     {
-        _calculationService = new CalculationService();
+        _calculationService = new CalculationService(new NullLogger<CalculationService>());
     }
 
     [Fact]

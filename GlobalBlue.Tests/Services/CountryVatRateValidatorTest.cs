@@ -1,5 +1,6 @@
 ﻿using GlobalBlue.Enums;
 using GlobalBlue.Services;
+using Microsoft.Extensions.Logging.Abstractions;
 using System.ComponentModel.DataAnnotations;
 
 namespace GlobalBlue.Tests.Services;
@@ -9,7 +10,7 @@ public class CountryVatRateValidatorTest
 
     public CountryVatRateValidatorTest()
     {
-        _validator = new CountryVatRateValidator();
+        _validator = new CountryVatRateValidator(new NullLogger<CountryVatRateValidator>());
     }
 
     [Fact]

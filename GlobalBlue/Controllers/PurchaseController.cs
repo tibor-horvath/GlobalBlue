@@ -14,14 +14,17 @@ namespace GlobalBlue.Controllers;
 public class PurchaseController : ControllerBase
 {
     private readonly ICalculationService _calculationService;
-    private readonly ICountryVatRateValidator _countryVatRateValidator;
+    private readonly IValidator _countryVatRateValidator;
+    private readonly ILogger<PurchaseController> _logger;
 
     public PurchaseController(
         ICalculationService calculationService,
-        ICountryVatRateValidator countryVatRateValidator)
+        IValidator countryVatRateValidator,
+        ILogger<PurchaseController> logger)
     {
         _calculationService = calculationService;
         _countryVatRateValidator = countryVatRateValidator;
+        _logger = logger;
     }
 
     /// <summary>
@@ -38,10 +41,13 @@ public class PurchaseController : ControllerBase
         [FromRoute] Country country,
         [FromBody, ValidAmountCalculationRequest] AmountCalculationRequest request)
     {
+        _logger.LogInformation("Received calculation request for country: {Country}", country);
+
         var validationResult = _countryVatRateValidator.Validate(country, request.VatRatePercentage);
 
         if (validationResult != ValidationResult.Success)
         {
+            _logger.LogWarning("Validation failed for country: {Country} with error: {ErrorMessage}", country, validationResult?.ErrorMessage);
             return BadRequest(new ProblemDetails
             {
                 Status = StatusCodes.Status400BadRequest,
@@ -51,6 +57,7 @@ public class PurchaseController : ControllerBase
         }
 
         var calculationResult = _calculationService.CalculateAmounts(request);
+        _logger.LogInformation("Calculation successful for country: {Country}", country);
 
         return Ok(calculationResult.ToAmountCalculationResponse(country));
     }

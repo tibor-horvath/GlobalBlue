@@ -3,6 +3,7 @@ using GlobalBlue.Dtos;
 using GlobalBlue.Enums;
 using GlobalBlue.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,14 +11,14 @@ namespace GlobalBlue.Tests.Controllers;
 public class PurchaseControllerTests
 {
     private readonly Mock<ICalculationService> _mockCalculationService;
-    private readonly Mock<ICountryVatRateValidator> _mockCountryVatRateValidator;
+    private readonly Mock<IValidator> _mockCountryVatRateValidator;
     private readonly PurchaseController _controller;
 
     public PurchaseControllerTests()
     {
         _mockCalculationService = new Mock<ICalculationService>();
-        _mockCountryVatRateValidator = new Mock<ICountryVatRateValidator>();
-        _controller = new PurchaseController(_mockCalculationService.Object, _mockCountryVatRateValidator.Object);
+        _mockCountryVatRateValidator = new Mock<IValidator>();
+        _controller = new PurchaseController(_mockCalculationService.Object, _mockCountryVatRateValidator.Object, new NullLogger<PurchaseController>());
     }
 
     [Fact]
@@ -35,7 +36,9 @@ public class PurchaseControllerTests
 
         // Assert
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-        Assert.Equal("Invalid VAT rate", badRequestResult.Value);
+        Assert.NotNull(badRequestResult);
+        Assert.NotNull(badRequestResult.Value);
+        Assert.Equal("Invalid VAT rate", (badRequestResult.Value as ProblemDetails)!.Detail);
     }
 
     [Fact]

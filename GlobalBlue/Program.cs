@@ -16,7 +16,7 @@ public class Program
         builder.Services.AddOpenApi();
 
         builder.Services.RegisterServices();
-        builder.Services.AddApiVersioning();
+        builder.Services.ConfigureApiVersioning();
 
         var app = builder.Build();
 

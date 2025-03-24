@@ -1,5 +1,4 @@
-﻿using GlobalBlue.Extensions;
-using GlobalBlue.Services;
+﻿using GlobalBlue.Services;
 using GlobalBlue.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +13,14 @@ public static class ServiceCollectionExtensions
     public static void RegisterServices(this IServiceCollection services)
     {
         services.AddScoped<ICalculationService, CalculationService>();
-        services.AddScoped<ICountryVatRateValidator, CountryVatRateValidator>();
+        services.AddScoped<IValidator, CountryVatRateValidator>();
     }
 
     /// <summary>
     /// Adds API versioning to the service collection.
     /// </summary>
     /// <param name="services">The IServiceCollection to add the API versioning to.</param>
-    public static void AddApiVersioning(this IServiceCollection services)
+    public static void ConfigureApiVersioning(this IServiceCollection services)
     {
         services.AddApiVersioning(options =>
         {
