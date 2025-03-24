@@ -32,7 +32,7 @@ public class PurchaseController : ControllerBase
     [HttpPost("calculate/{country:required}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
-    public ActionResult<AmountCalculationResponse> CalculateAmounts(
+    public IActionResult CalculateAmounts(
         [FromRoute] Country country,
         [FromBody, ValidAmountCalculationRequest] AmountCalculationRequest request)
     {
