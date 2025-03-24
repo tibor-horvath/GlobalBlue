@@ -36,7 +36,7 @@ public class PurchaseController : ControllerBase
     [HttpPost("calculate/{country:required}")]
     [MapToApiVersion("1")]
     [ProducesResponseType(typeof(AmountCalculationResponse), 200)]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(typeof(ProblemDetails), 400)]
     public IActionResult CalculateAmounts(
         [FromRoute] Country country,
         [FromBody, ValidAmountCalculationRequest] AmountCalculationRequest request)
