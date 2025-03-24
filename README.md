@@ -1,3 +1,5 @@
+[![.NET](https://github.com/tibor-horvath/GlobalBlue/actions/workflows/dotnet.yml/badge.svg)](https://github.com/tibor-horvath/GlobalBlue/actions/workflows/dotnet.yml)
+
 # GlobalBlue
 
 ## Project Goal
