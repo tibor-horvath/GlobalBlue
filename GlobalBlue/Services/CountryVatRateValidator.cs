@@ -27,7 +27,7 @@ public class CountryVatRateValidator : IValidator
     {
         _logger.LogInformation("Validating VAT rate {VatRate} for country {Country}", vatRate, country);
 
-        if (!VatRatesConfig.VatRatesPerCountry.TryGetValue(country, out var validVatRates))
+        if (!CountryVatRatesConfig.VatRatesByCountry.TryGetValue(country, out var validVatRates))
         {
             _logger.LogWarning("No VAT rates defined for country {Country}", country);
             return new ValidationResult($"No VAT rates defined for country {country}.");
