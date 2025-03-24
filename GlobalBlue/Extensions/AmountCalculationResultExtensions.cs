@@ -12,13 +12,15 @@ public static class AmountCalculationResultExtensions
     /// <returns>An <see cref="AmountCalculationResponse"/> with rounded values.</returns>
     public static AmountCalculationResponse ToAmountCalculationResponse(this AmountCalculationResult result, Country country)
     {
+        const int decimalPlaces = 2;
+
         return new AmountCalculationResponse
         {
             Country = country,
-            Net = Math.Round(result.Net, 2),
-            Gross = Math.Round(result.Gross, 2),
+            Net = Math.Round(result.Net, decimalPlaces),
+            Gross = Math.Round(result.Gross, decimalPlaces),
             VatRatePercentage = result.VatRatePercentage,
-            Vat = Math.Round(result.Vat, 2)
+            Vat = Math.Round(result.Vat, decimalPlaces)
         };
     }
 }
