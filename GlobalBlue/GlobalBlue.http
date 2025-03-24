@@ -1,0 +1,16 @@
+@GlobalBlue_HostAddress = https://localhost:7013
+
+###
+
+@country=AT
+POST {{GlobalBlue_HostAddress}}/Purchase/calculate/{{country}}
+Content-Type: application/json
+
+{  
+  "net": null,
+  "gross": 240,
+  "vat": null,
+  "vatRatePercentage": 20
+}
+
+###
